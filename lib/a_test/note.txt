@@ -1,0 +1,70 @@
+
+=>>>>>>>> NEU BUG NAY HIEN RA: 
+
+" 
+
+Execution failed for task ':flutter_exif_plugin:compileDebugKotlin'.
+> Inconsistent JVM-target compatibility detected for tasks 
+'compileDebugJavaWithJavac' (1.8) and 'compileDebugKotlin' (17).
+
+"
+
+=>>>>>>>> SU DUNG DOAN CODE SAU THAY CHO FILE build.gradle CUA PACKAGE flutter_exif_plugin
+
+group 'com.spacycoder.flutter_exif_plugin'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.6.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.2.2' // Updated Gradle plugin version
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    namespace 'com.spacycoder.flutter_exif_plugin' // Moved outside the condition
+    compileSdkVersion 34
+
+    defaultConfig {
+        minSdkVersion 26 // Lowered for better compatibility unless 28+ is required
+        targetSdkVersion 34
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.exifinterface:exifinterface:1.3.3"
+}

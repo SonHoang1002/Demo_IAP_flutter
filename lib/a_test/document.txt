@@ -1,0 +1,25 @@
+  General
+
+  Resize:
+  - Ảnh preview  = Cropped Image ( original image ) + setting
+
+  Crop:
+  - Crop từ ảnh gốc 
+  
+  Save:
+  - Sử dụng crop image rect ( hiện tại đang là rect của scale down image ) -> resize về 
+  
+  Các Directory để lưu cache:
+
+  - Lưu các file temp file được generate trước khi vào màn hình save: temporary directory
+  - Lưu clone path trươc khi vào mang hình resize : application cache Directory
+  - 
+
+
+
+
+
+
+
+
+
